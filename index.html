@@ -1,28 +1,126 @@
+<!--This is a Prototype-->
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.0/dist/semantic.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="CSS/styles.css">
+  <meta charset="utf-8">
+  <title>Torben Erdmann ‍💻 Developer </title>
+  <meta name=“viewport” content=“width=device-width, initial-scale=1.0”>
+  <!-- Favicon -->
+  <link rel="icon" href="IMG\te.ico" alt="Spider-Web">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inconsolata:wght@900&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
+  <!--Navigation########Navigation########Navigation####-Navigation--->
 
-    <button class="ui button">
-        Follow
-      </button>
+  <nav class="nav-bar">
+    <ul>
+      <li><a class="nav-link" href="index.html"><strong>Home</strong></a></li>
+      <li><a class="nav-link" href="#profile"><strong>About Me</strong></a></li>
+      <li><a class="nav-link" href="#coding"><strong>Coding</strong></a></li>
+      <li><a class="nav-link" href="#contact"><strong>Contact</strong></a></li>
+      <li><a class="nav-link" href="#projets"><strong>Projects</strong></a></li>
+    </ul>
+  </nav>
 
-    <a href="https://github.com/idontgitthiscode/torbenerdmann.de">Github</a>
+  <div class="page-wraper">
 
-  
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.0/dist/semantic.min.js"></script>
+    <!--#####-Header#######Header########Header####Header#####Hero-->
+
+    <!-- Hero -->
+    <header class="grid-container hero">
+      <div class="taketop">
+          <h1>I'm Torben</h1>
+          <h1 class="maketextinline">a</h1>
+          <img id="web" src="IMG\spider-web.png">
+          <h1 class="maketextinline">Developer.</h1>
+      </div>
+      <div class="takebottom">
+        <div class="picture-container">
+          <img class="img-hero" src="IMG\User Interaction.png" alt="Picture of a Mobile ">
+          <img class="img-hero" src="IMG\Embedding.png" alt="Picture of a Core ">
+          <img class="img-hero" src="IMG\Back End.png" alt="Picture of a Laptop ">
+          </div>
+     </div>
+    </header>
+
+    <!--####MAIN#################MAIN##########MAIN###########MAIN-->
+
+    <main class="main">
+<hr id="profile">
+      <!-- Profile -->
+
+      <div class="textbox"  class="profile" >
+        <img class="icon" src="IMG\Full Stack Designer Male.png" alt="Picture of a Developer">
+        <div class="devstyle">
+          <h2 >About me</h2>
+          <p>Hello, my name is Torben (29).<br>I am a Web Developer and<br>  I am addicted to 💻 since the age of 5.<br> Now I am addicted to ☕ too.<br><br> My Hobbies are:<br> 💻📚🌌🍜🐈🏋️‍♂️ (✈)</p>
+        </div>
+      </div>
+
+      <hr id="coding">
+
+      <!-- Skills -->
+      <div  class="skills" >
+        <h2 >Coding Skills.</h2>
+        <div>
+          <img class="img" src="IMG\Html.png" alt="Picture of HTML-File">
+          <img class="img" src="IMG\CSS.png" alt="Picture of CSS-File">
+          <img class="img" src="IMG\JavaScript.png" alt="Picture of JS-File">
+    </div>
+
+      </div>
+
+      <hr id="contact">
+
+      <!-- Contact -->
+      <div class="textbox" class="contact-me" >
+
+      <img class="icon" src="IMG\Client Contract.png" alt="Picture of a Handshake">
+
+        <div class="devstyle">
+
+
+        <h2 >Get In Touch</h2>
+        <h3>Lorem ipsum dolor sit amet, non elit.</h3>
+        <p>Lorem ipsum dolor sit amet, in quis, aenean amet. Phasellus sodales, tellus donec dui, ornare erat.</p>
+        <a class="btn" href="mailto:name@email.com">CONTACT ME</a>
+      </div>
+      </div>
+
+    <hr>
+<!-- Projekt 
+
+      <section class="Projects" id="projets">
+
+        <h2 >I develop Things.</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+          aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      </section>
+-->
+    </main>
+
+    <!--FOOTER###########FOOTER###########FOOTER###########FOOTER-->
+    <footer class="footer">
+      <div>
+        <!-- Links -->
+        <a class="footer-link"  target=”_blank” href="https://www.linkedin.com/in/torben-fabian-erdmann/">LinkedIn</a>
+        <a class="footer-link"  target=”_blank” href="https://github.com/idontgitthiscode"><img src="IMG\GitHub.png" alt="Github-Logo"></a>
+        <a class="footer-link"  target=”_blank” href="https://twitter.com/idontgitthisco1">Twitter</a>
+
+
+        <!-- ©copyright -->
+        <p>© 2020 Torben Erdmann</p>
+      </div>
+    </footer>
+
+
+  </div>
+
 </body>
 
 </html>
