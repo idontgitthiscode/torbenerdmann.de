@@ -1,7 +1,7 @@
+# 🦋 torbenerdmann.de | Technical PM Portfolio
+
 ## 📍 Project Vision
 This repository is more than just a portfolio; it's a live demonstration of my **Technical Project Management** workflow. I am documenting the transition from a legacy Plesk environment to a modern, containerized infrastructure, reflecting my own journey from **Customer Support** to **Technical Leadership**.
-
-> "I don't just manage projects; I build the foundations they stand on."
 
 ## 🏗 Tech Stack & Architecture
 * **Frontend:** [Astro](https://astro.build/) (SSG for lightning-fast performance)
@@ -10,18 +10,6 @@ This repository is more than just a portfolio; it's a live demonstration of my *
 * **Proxy/SSL:** Nginx Proxy Manager (Automated Let's Encrypt)
 * **CI/CD:** GitHub Actions (Automated Build-to-Server Pipeline)
 
-## 🗺 Roadmap & Milestones
-- [x] **Phase 1: Foundation**
-  - [x] SSH & GitHub Authentication (Secure Access)
-  - [x] Local Astro Initialization with Strict TypeScript
-  - [x] Project Board & Issue Management Setup
-- [ ] **Phase 2: Infrastructure Migration (In Progress)**
-  - [ ] Decommissioning legacy Plesk server
-  - [ ] Docker Engine & Network setup
-  - [ ] DNS propagation & SSL hardening
-- [ ] **Phase 3: Intelligence & Showcase**
-  - [ ] Deploying Local LLMs (Ollama)
-  - [ ] RAG (Retrieval-Augmented Generation) for interactive CV data
 
 ## 🛠 Local Setup
 To run this project locally and explore the code:
