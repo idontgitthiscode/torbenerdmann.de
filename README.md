@@ -1,46 +1,40 @@
-# Astro Starter Kit: Basics
+## 📍 Project Vision
+This repository is more than just a portfolio; it's a live demonstration of my **Technical Project Management** workflow. I am documenting the transition from a legacy Plesk environment to a modern, containerized infrastructure, reflecting my own journey from **Customer Support** to **Technical Leadership**.
 
-```sh
-npm create astro@latest -- --template basics
-```
+> "I don't just manage projects; I build the foundations they stand on."
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🏗 Tech Stack & Architecture
+* **Frontend:** [Astro](https://astro.build/) (SSG for lightning-fast performance)
+* **Infrastructure:** [Hetzner Cloud](https://www.hetzner.com/) VPS (Ubuntu 24.04 LTS)
+* **Containers:** Docker & Docker Compose
+* **Proxy/SSL:** Nginx Proxy Manager (Automated Let's Encrypt)
+* **CI/CD:** GitHub Actions (Automated Build-to-Server Pipeline)
 
-## 🚀 Project Structure
+## 🗺 Roadmap & Milestones
+- [x] **Phase 1: Foundation**
+  - [x] SSH & GitHub Authentication (Secure Access)
+  - [x] Local Astro Initialization with Strict TypeScript
+  - [x] Project Board & Issue Management Setup
+- [ ] **Phase 2: Infrastructure Migration (In Progress)**
+  - [ ] Decommissioning legacy Plesk server
+  - [ ] Docker Engine & Network setup
+  - [ ] DNS propagation & SSL hardening
+- [ ] **Phase 3: Intelligence & Showcase**
+  - [ ] Deploying Local LLMs (Ollama)
+  - [ ] RAG (Retrieval-Augmented Generation) for interactive CV data
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠 Local Setup
+To run this project locally and explore the code:
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+```bash
+# Clone via SSH
+git clone git@github.com:torbnerdmann/torben.erdmann.de.git
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+# Navigate to directory
+cd torben.erdmann.de
 
-## 🧞 Commands
+# Install dependencies
+npm install
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+# Start development server
+npm run dev
