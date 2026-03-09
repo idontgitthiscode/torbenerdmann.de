@@ -43,14 +43,19 @@ const { title } = Astro.props;
     </nav>
 
     <div class="desktop-icons" id="os-icons" style="opacity: 0;">
-      <div class="icon">
-        <span class="icon-img">📄</span>
-        <span class="icon-label">CV_2026.pdf</span>
-      </div>
-      <div class="icon">
-        <span class="icon-img">📂</span>
-        <span class="icon-label">Projects</span>
-      </div>
+      <a href="https://github.com/idontgitthiscode/torbenerdmann.de" target="_blank" class="icon-link">
+        <div class="icon">
+          <span class="icon-img">🐙</span> 
+          <span class="icon-label">GitHub</span>
+        </div>
+      </a>
+      
+      <a href="https://www.linkedin.com/in/torben-fabian-erdmann/" target="_blank" class="icon-link">
+        <div class="icon">
+          <span class="icon-img">🔗</span> 
+          <span class="icon-label">LinkedIn</span>
+        </div>
+      </a>
     </div>
 
     <div class="desktop-wallpaper"></div>
@@ -77,12 +82,11 @@ const { title } = Astro.props;
       setInterval(updateTime, 1000);
       updateTime();
 
-      // 2. Script für den Boot-Loader
+      // 2. Script für den Boot-Loader & Einblenden
       window.addEventListener('load', () => {
         const loader = document.getElementById('boot-loader');
         const elementsToFade = ['os-top-bar', 'os-icons', 'os-main'];
 
-        // Nach 3 Sekunden (Ladeanimation) das System einblenden
         setTimeout(() => {
           if (loader) {
             loader.style.opacity = '0';
@@ -97,7 +101,6 @@ const { title } = Astro.props;
             }
           });
 
-          // Loader nach dem Fade komplett entfernen
           setTimeout(() => {
             if (loader) loader.style.display = 'none';
           }, 1000);
@@ -135,41 +138,19 @@ const { title } = Astro.props;
   }
 
   .loader-content { display: flex; flex-direction: column; align-items: center; }
-  
-  .loader-butterfly {
-    font-size: 5rem;
-    margin-bottom: 20px;
-    animation: pulse 2s infinite ease-in-out;
-  }
-
-  .loader-bar-container {
-    width: 200px;
-    height: 4px;
-    background: #333;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .loader-bar-fill {
-    width: 0%;
-    height: 100%;
-    background: var(--accent-green);
-    animation: loading 3s forwards ease-in-out;
-  }
-
+  .loader-butterfly { font-size: 5rem; margin-bottom: 20px; animation: pulse 2s infinite ease-in-out; }
+  .loader-bar-container { width: 200px; height: 4px; background: #333; border-radius: 2px; overflow: hidden; }
+  .loader-bar-fill { width: 0%; height: 100%; background: var(--accent-green); animation: loading 3s forwards ease-in-out; }
   .loader-text { margin-top: 15px; font-size: 0.8rem; }
   .green-text { color: var(--accent-green); }
 
   @keyframes loading { to { width: 100%; } }
   @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
 
-  /* RESTLICHE STYLES */
+  /* UI STYLES */
   .desktop-wallpaper {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background-image: url('/images/torben_os_wallpaper.png'); 
     background-size: cover;
     background-position: center;
@@ -189,29 +170,60 @@ const { title } = Astro.props;
     box-sizing: border-box;
   }
 
+  .desktop-icons {
+    position: absolute; 
+    top: 60px; 
+    left: 25px;
+    display: flex; 
+    flex-direction: column; 
+    gap: 30px; 
+    z-index: 20; /* Liegt ÜBER dem main-layer */
+  }
+  
+  .icon-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  
+  .icon { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    width: 75px; 
+    opacity: 0.9; 
+    transition: 0.2s;
+  }
+  
+  .icon:hover { opacity: 1; transform: scale(1.05); }
+  .icon-img { font-size: 2.2rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8)); }
+  .icon-label { 
+    font-size: 0.65rem; color: #fff; margin-top: 5px;
+    background: rgba(0,0,0,0.5); padding: 2px 8px; border-radius: 4px;
+    text-shadow: 0 1px 2px #000; text-align: center; min-width: 60px;
+  }
+
+  /* MAIN & TERMINAL INTERACTION FIX */
+  main {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    height: 100vh; 
+    width: 100vw; 
+    position: relative; 
+    z-index: 10;
+    pointer-events: none; /* Lässt Klicks auf Icons durch */
+  }
+
+  /* Terminal muss Klicks wieder annehmen */
+  main > * {
+    pointer-events: auto;
+  }
+
   .bar-left { display: flex; gap: 15px; align-items: center; }
   .bar-right { display: flex; align-items: center; gap: 15px; font-weight: 500; white-space: nowrap; }
   .system-status { display: flex; gap: 8px; font-size: 1rem; opacity: 0.9; }
   .menu-item { color: #8b949e; cursor: default; }
   .bold { color: #fff; font-weight: bold; }
   .os-logo { font-size: 1.1rem; color: #fff; }
-
-  .desktop-icons {
-    position: absolute; top: 60px; left: 25px;
-    display: flex; flex-direction: column; gap: 30px; z-index: 5;
-  }
-  
-  .icon { display: flex; flex-direction: column; align-items: center; width: 75px; opacity: 0.9; cursor: pointer; }
-  .icon:hover { opacity: 1; transform: scale(1.05); transition: 0.2s; }
-  .icon-img { font-size: 2.2rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8)); }
-  .icon-label { 
-    font-size: 0.65rem; color: #fff; margin-top: 5px;
-    background: rgba(0,0,0,0.5); padding: 2px 6px; border-radius: 4px;
-    text-shadow: 0 1px 2px #000; text-align: center;
-  }
-
-  main {
-    display: flex; align-items: center; justify-content: center;
-    height: 100vh; width: 100vw; position: relative; z-index: 10;
-  }
 </style>
