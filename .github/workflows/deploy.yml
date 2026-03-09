@@ -1,0 +1,60 @@
+name: Deploy to GHCR and Hetzner
+
+on:
+  push:
+    branches: [ main ] # Trigger bei jedem Push auf den Main-Branch
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }} # Das Secret, das du bei GitHub angelegt hast
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH Deploy to Hetzner
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }} # Deine Server IP aus den Secrets
+          username: root
+          key: ${{ secrets.SERVER_SSH_KEY }} # Dein privater SSH Key aus den Secrets
+          script: |
+            # Login auf dem Server bei der GitHub Registry
+            echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            
+            # Das neueste Image ziehen
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            
+            # Alten Container stoppen und entfernen (basierend auf deinem 'docker ps' Output)
+            docker stop torben_astro || true
+            docker rm torben_astro || true
+            
+            # Neuen Container starten auf Port 8080 (wichtig für deinen Proxy Manager!)
+            docker run -d \
+              --name torben_astro \
+              -p 8080:80 \
+              --restart unless-stopped \
+              ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
