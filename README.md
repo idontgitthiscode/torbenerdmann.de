@@ -1,3 +1,4 @@
+![Deploy Status](https://github.com/idontgitthiscode/torbenerdmann.de/actions/workflows/deploy.yml/badge.svg)
 # 🦋 torbenerdmann.de | Technical Portfolio
 
 ## 📍 Project Vision
