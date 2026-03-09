@@ -1,5 +1,5 @@
 ---
-/* Terminal.astro - Draggable Terminal mit sauberem Design */
+/* Terminal.astro - Draggable Terminal mit minimalistischem Blue-Control-Design */
 ---
 
 <section class="terminal-container">
@@ -42,17 +42,18 @@
 </section>
 
 <script>
-  // --- 1. TERMINAL LOGIK (Commands & Input) ---
+  // --- 1. TERMINAL LOGIK ---
   const input = document.getElementById('terminal-input') as HTMLInputElement;
   const typer = document.getElementById('terminal-typer');
   const history = document.getElementById('terminal-history');
   const body = document.getElementById('terminal-body');
+  const terminal = document.getElementById('terminal-window');
 
   const COMMANDS = {
     help: "Commands: <span class='blue'>story</span>, <span class='blue'>skills</span>, <span class='blue'>contact</span>, <span class='blue'>clear</span>",
     skills: "• AWS Lightsail, Hetzner, Plesk, Docker<br/>• Astro, HTML/CSS, WordPress<br/>• Jira, Confluence, Github",
-    story: "I started in customer support and sales, learning firsthand what users actually need and where products fail. I taught myself the technical side—from hosting and DNS to web development—because I wanted to understand how things work under the hood. I’ve been working as a Technical Project Manager for the last years, bridging the gap between customer needs and technical execution.",
-    hobbies: "In my free time, I enjoy playing guitar, reading and writing, spending time with my family, and gaming. I’m also passionate about learning new technologies and exploring how they can solve real-world problems.",  
+    story: "I started in customer support and sales, learning firsthand what users actually need. I taught myself the technical side—from hosting to web development. I’ve been working as a Technical Project Manager for the last years, bridging the gap between customer needs and technical execution.",
+    hobbies: "In my free time, I enjoy playing guitar, reading, family time, and gaming.",  
     contact: "LinkedIn: <a href='https://www.linkedin.com/in/torben-fabian-erdmann/' target='_blank' class='blue'>/torben-fabian-erdmann</a><br/>GitHub: <a href='https://github.com/idontgitthiscode' target='_blank' class='blue'>/idontgitthiscode</a>",
   };
 
@@ -82,13 +83,16 @@
     }
   });
 
-  // Klick ins Fenster fokussiert den Input
+  // Schließen-Logik für den blauen Punkt
+  const closeBtn = document.querySelector('.control.close');
+  closeBtn?.addEventListener('click', () => {
+    if (terminal) terminal.style.display = 'none';
+  });
+
   document.addEventListener('click', () => input?.focus());
 
   // --- 2. DRAG & DROP LOGIK ---
-  const terminal = document.getElementById('terminal-window');
   const header = terminal?.querySelector('.terminal-header') as HTMLElement;
-
   let isDragging = false;
   let offsetX = 0;
   let offsetY = 0;
@@ -102,13 +106,9 @@
 
   document.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
-
-    const x = e.clientX - offsetX;
-    const y = e.clientY - offsetY;
-
     terminal!.style.position = 'fixed';
-    terminal!.style.left = `${x}px`;
-    terminal!.style.top = `${y}px`;
+    terminal!.style.left = `${e.clientX - offsetX}px`;
+    terminal!.style.top = `${e.clientY - offsetY}px`;
     terminal!.style.margin = '0'; 
     terminal!.style.transform = 'none'; 
   });
@@ -140,9 +140,9 @@
     flex-direction: column;
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
     position: relative; 
-    z-index: 999!important; /* Liegt ÜBER allen anderen Elementen */
-    overflow: hidden; /* FIX: Ecken sauber abschneiden */
-    user-select: none; /* Verhindert Textmarkierung beim Dragging */
+    z-index: 999;
+    overflow: hidden;
+    user-select: none;
     opacity: 0;
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
@@ -154,18 +154,29 @@
     align-items: center;
     border-bottom: 1px solid #30363d;
     flex-shrink: 0;
-    cursor: grab; 
-    border-top-left-radius: 11px;
-    border-top-right-radius: 11px;
+    cursor: grab;
   }
 
-  .terminal-header:active { cursor: grabbing; }
+  /* NEUE CONTROLS: Hellblauer Punkt */
+  .terminal-controls { 
+    display: flex; 
+    gap: 8px; 
+    position: absolute; 
+    left: 16px;
+  }
 
-  .terminal-controls { display: flex; gap: 8px; position: absolute; }
-  .control { width: 12px; height: 12px; border-radius: 50%; }
-  .close { background: #ff5f56; }
-  .minimize { background: #ffbd2e; }
-  .maximize { background: #27c93f; }
+  .control { 
+    width: 12px; 
+    height: 12px; 
+    border-radius: 50%; 
+    background: #58a6ff; 
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+
+  .control:hover { opacity: 1; cursor: pointer; }
+
+  .minimize, .maximize { display: none; } /* Nur der Close-Button bleibt */
 
   .terminal-title { width: 100%; text-align: center; color: #8b949e; font-size: 0.8rem; font-family: monospace; }
 
@@ -175,18 +186,14 @@
     flex-grow: 1;
     font-family: 'JetBrains Mono', monospace;
     text-align: left;
-    scrollbar-width: thin;
-    scrollbar-color: #30363d transparent;
     color: #e6edf3 !important;
-    user-select: text; /* Text im Terminal wieder markierbar machen */
+    user-select: text;
   }
 
-  /* Kommandozeile */
-  .line { display: flex; gap: 10px; margin-bottom: 6px; justify-content: flex-start; }
-  .command-line { display: flex; align-items: center; gap: 10px; justify-content: flex-start; margin-top: 5px; }
+  .line { display: flex; gap: 10px; margin-bottom: 6px; }
+  .command-line { display: flex; align-items: center; gap: 10px; margin-top: 5px; }
   .input-wrapper { display: flex; align-items: center; position: relative; }
-
-  #terminal-input { position: absolute; width: 100%; opacity: 0; border: none; outline: none; cursor: text; }
+  #terminal-input { position: absolute; width: 100%; opacity: 0; border: none; outline: none; }
   #terminal-typer { color: #fff; white-space: pre; }
 
   .block-cursor {
@@ -194,30 +201,35 @@
     height: 1.2rem;
     background-color: #fff;
     animation: blink 1s step-end infinite;
-    margin-left: 2px;
   }
 
   @keyframes blink { 50% { opacity: 0; } }
 
-  .prompt { color: #2ea043; font-weight: bold; white-space: nowrap; }
-  .command { color: #fff; }
-  
+  .prompt { color: #2ea043; font-weight: bold; }
   .name-display { font-size: clamp(1.8rem, 6vw, 3.2rem); margin: 0.5rem 0 1rem 0; font-weight: 800; display: flex; gap: 15px; }
-  .green-box { background: #2ea043; color: #0d1117; padding: 0 10px; display: inline-block; }
+  .green-box { background: #2ea043; color: #0d1117; padding: 0 10px; }
   .white { color: #fff; }
   .role-title { color: #8b949e; font-size: 1.3rem; margin-bottom: 1rem; }
-
-  .terminal-output-line { margin-bottom: 1.2rem; line-height: 1.5; color: #e6edf3; }
+  .terminal-output-line { margin-bottom: 1.2rem; line-height: 1.5; }
   .highlight { color: #2ea043; text-decoration: underline; }
   .blue { color: #58a6ff; text-decoration: none; }
-  .blue:hover { text-decoration: underline; }
   .red { color: #f85149; }
 
-  /* Animation */
   .reveal.active { opacity: 1; transform: translateY(0); }
 
-  @media (max-width: 600px) {
-    .terminal-window { height: 75vh; position: relative !important; left: auto !important; top: auto !important; }
-    .name-display { font-size: 1.8rem; gap: 8px; }
+  /* MOBILE POSITIONING */
+  @media (max-width: 1124px) {
+    .terminal-container {
+      align-items: flex-start;
+      padding-top: 150px;
+    }
+    .terminal-window {
+      height: 60vh;
+      max-height: 450px;
+      position: relative !important;
+      left: auto !important;
+      top: auto !important;
+      margin: 0 auto;
+    }
   }
 </style>
