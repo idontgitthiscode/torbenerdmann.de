@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Datenschutz | Torben Erdmann">
+  <section class="privacy-window">
+    <div class="privacy-header">
+      <span class="privacy-dot"></span>
+      <span>datenschutz.txt</span>
+    </div>
+
+    <article class="privacy-body">
+      <p class="prompt">guest@portfolio:~$ cat datenschutz.txt</p>
+
+      <h1>Datenschutzerklärung</h1>
+      <p>
+        Diese Website dient als persönliches Portfolio von Torben Erdmann. Der Betrieb erfolgt
+        datensparsam. Es werden keine Analyse-Tools, keine Tracking-Cookies, keine externen
+        Schriftarten und keine eingebetteten Drittanbieter-Skripte eingesetzt.
+      </p>
+
+      <h2>Verantwortlicher</h2>
+      <p>
+        Verantwortlich für diese Website ist Torben Erdmann. Die vollständigen Angaben finden
+        Sie im Impressum von CentauriStack:
+        <a href="https://centauristack.de/impressum" target="_blank" rel="noopener noreferrer">
+          https://centauristack.de/impressum
+        </a>
+      </p>
+
+      <h2>Hosting und Server-Logfiles</h2>
+      <p>
+        Diese Website wird bei Hetzner gehostet. Beim Aufruf der Website werden technisch
+        notwendige Zugriffsdaten verarbeitet, damit die Seite ausgeliefert und der sichere
+        Betrieb gewährleistet werden kann. Dazu können insbesondere IP-Adresse, Datum und
+        Uhrzeit des Abrufs, angeforderte Datei, übertragene Datenmenge, Browserinformationen
+        und die zuvor besuchte Seite gehören, sofern diese übermittelt wird.
+      </p>
+      <p>
+        Diese Daten werden nicht verwendet, um Besucher persönlich zu identifizieren oder ihr
+        Verhalten auszuwerten. Eine Auswertung zu Marketingzwecken findet nicht statt.
+      </p>
+
+      <h2>Keine Cookies und kein Tracking</h2>
+      <p>
+        Diese Website setzt keine Cookies, speichert keine Daten im Browser und nutzt keine
+        Dienste wie Google Analytics, Matomo, Meta Pixel oder vergleichbare Tracking-Systeme.
+      </p>
+
+      <h2>Externe Links</h2>
+      <p>
+        Die Website enthält Links zu externen Seiten wie GitHub, LinkedIn und CentauriStack.
+        Erst beim Anklicken dieser Links verlassen Sie diese Website. Für die Verarbeitung
+        personenbezogener Daten auf den verlinkten Seiten sind die jeweiligen Anbieter
+        verantwortlich.
+      </p>
+
+      <h2>Betroffenenrechte</h2>
+      <p>
+        Sie haben nach der DSGVO insbesondere Rechte auf Auskunft, Berichtigung, Löschung,
+        Einschränkung der Verarbeitung, Widerspruch und Beschwerde bei einer zuständigen
+        Datenschutzaufsichtsbehörde. Für Anfragen nutzen Sie bitte die Kontaktangaben im
+        Impressum.
+      </p>
+
+      <p class="last-updated">Stand: Juni 2026</p>
+      <a class="back-link" href="/">Zurück zum Terminal</a>
+    </article>
+  </section>
+</Layout>
+
+<style>
+  .privacy-window {
+    width: min(920px, calc(100vw - 48px));
+    max-height: calc(100vh - 96px);
+    margin-top: 32px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    color: #e6edf3;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .privacy-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+    color: #8b949e;
+    font-size: 0.8rem;
+  }
+
+  .privacy-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #58a6ff;
+  }
+
+  .privacy-body {
+    max-height: calc(100vh - 148px);
+    overflow-y: auto;
+    padding: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .prompt {
+    margin: 0 0 1.25rem;
+    color: #2ea043;
+    font-weight: 700;
+  }
+
+  h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: #fff;
+  }
+
+  h2 {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1rem;
+    color: #58a6ff;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    color: #c9d1d9;
+  }
+
+  a {
+    color: #58a6ff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .last-updated {
+    margin-top: 1.5rem;
+    color: #8b949e;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #2ea043;
+    font-weight: 700;
+  }
+
+  @media (max-width: 720px) {
+    .privacy-window {
+      width: calc(100vw - 24px);
+      max-height: calc(100vh - 72px);
+      margin-top: 48px;
+      border-radius: 10px;
+    }
+
+    .privacy-body {
+      max-height: calc(100vh - 124px);
+      padding: 1rem;
+    }
+  }
+</style>
