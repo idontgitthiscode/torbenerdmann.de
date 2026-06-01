@@ -251,55 +251,49 @@ const { title } = Astro.props;
 
   
 
-@media (max-width: 1124px) {
-  .desktop-icons { 
-    display: none !important;
-  }
   @media (max-width: 1124px) {
-  
+    .desktop-icons {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(68px, 1fr));
+      justify-items: center;
+      gap: 14px 18px;
+      position: fixed !important;
+      bottom: 18px;
+      left: 50% !important;
+      top: auto !important;
+      transform: translateX(-50%);
+      width: min(calc(100vw - 28px), 360px);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 14px 16px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
 
-  /* 2. Die Icons in eine horizontale Glas-Bar verwandeln */
-  .desktop-icons {
-    display: flex !important;
-    flex-direction: row !important; /* Horizontal nebeneinander */
-    justify-content: center;
-    gap: 40px;
+    .icon {
+      width: 68px;
+    }
+
+    .icon-img {
+      font-size: 1.8rem;
+    }
     
-    /* Positionierung am unteren Rand */
-    position: fixed !important;
-    bottom: 30px;
-    left: 50% !important;
-    transform: translateX(-50%);
-    top: auto !important; /* Überschreibt das 'top: 60px' vom Desktop */
-    
-    /* Glassmorphism Design */
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px 30px;
-    border-radius: 24px;
-    width: fit-content;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
+    .icon-label {
+      background: transparent;
+      font-size: 0.58rem;
+      min-width: 0;
+      max-width: 78px;
+      overflow-wrap: anywhere;
+    }
 
-  /* Icon-Größe für Mobile leicht anpassen */
-  .icon-img {
-    font-size: 1.8rem;
-  }
-  
-  .icon-label {
-    background: transparent; /* Text-Hintergrund weg für cleaner Look im Dock */
-    font-size: 0.6rem;
-  }
+    .menu-item:not(.bold), .bar-right {
+      display: none !important;
+    }
 
-  /* 3. Topbar aufräumen */
-  .menu-item:not(.bold), .bar-right {
-    display: none !important;
+    .desktop-top-bar {
+      justify-content: center;
+    }
   }
-  .desktop-top-bar {
-    justify-content: center;
-  }
-}
-}
 </style>
